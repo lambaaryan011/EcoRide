@@ -2,10 +2,10 @@ import React from 'react';
 import { UseFormRegister, FieldError } from 'react-hook-form';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
-  name: string;
-  register: UseFormRegister<any>;
-  error?: FieldError;
+  label: string; // Label text for the input
+  name: string; // Field name for react-hook-form registration
+  register: UseFormRegister<any>; // Register function from react-hook-form
+  error?: Partial<FieldError>; // Optional FieldError
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -18,7 +18,10 @@ export const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <div className="space-y-1">
-      <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+      <label
+        htmlFor={name}
+        className="block text-sm font-medium text-gray-700"
+      >
         {label}
       </label>
       <input
@@ -26,13 +29,13 @@ export const Input: React.FC<InputProps> = ({
         type={type}
         {...register(name)}
         {...props}
-        className={`
-          block w-full rounded-md border-gray-300 shadow-sm
-          focus:border-blue-500 focus:ring-blue-500 sm:text-sm
-          ${error ? 'border-red-500' : 'border-gray-300'}
+        aria-invalid={!!error}
+        className={`block w-full rounded-md shadow-sm sm:text-sm
+          focus:ring-blue-500 focus:border-blue-500
+          ${error ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-300'}
         `}
       />
-      {error && (
+      {error?.message && (
         <p className="text-sm text-red-600">{error.message}</p>
       )}
     </div>
