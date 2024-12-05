@@ -1,8 +1,10 @@
 import React from 'react';
 import { ArrowRight, Shield, Users, Clock } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+ import { useNavigate } from 'react-router-dom';
 
 export const Home: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -18,15 +20,29 @@ export const Home: React.FC = () => {
             </p>
             <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
               <div className="rounded-md shadow">
-                <Button variant="primary" size="lg" className="w-full sm:w-auto">
-                  Find a Ride
-                  <ArrowRight className="ml-2 -mr-1 h-5 w-5" />
-                </Button>
+              <Button
+  variant="primary"
+  size="lg"
+  className="w-full sm:w-auto flex items-center justify-center bg-blue text-white border border-gray-300 hover:bg-voilet-100"
+  onClick={() => navigate("/search")}
+>
+  Find A Ride
+  <ArrowRight className="ml-2 -mr-1 h-5 w-5 animate-pulse" />
+</Button>
+
+
               </div>
               <div className="mt-3 sm:mt-0 sm:ml-3">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                  Offer a Ride
-                </Button>
+              <Button
+  variant="primary"
+  size="lg"
+  className="w-full sm:w-auto bg-white text-black border border-gray-300 hover:bg-gray-100"
+  onClick={() => navigate("/offer")}
+>
+  Offer A Ride
+</Button>
+
+
               </div>
             </div>
           </div>
