@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -26,8 +26,10 @@ export const OfferRide: React.FC = () => {
     resolver: zodResolver(offerSchema),
   });
 
+  const [rides, setRides] = useState<OfferFormData[]>([]);
+
   const onSubmit = (data: OfferFormData) => {
-    console.log('Offer data:', data);
+    setRides((prevRides) => [...prevRides, data]);
   };
 
   return (
@@ -37,81 +39,81 @@ export const OfferRide: React.FC = () => {
       <div className="bg-white rounded-lg shadow-sm p-6">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
-            <div className="relative flex items-center">
-              <MapPin className="h-5 w-5 text-gray-400 absolute left-3 top-3" />
+            <div className="relative flex items-center space-x-3">
+              <MapPin className="h-5 w-5 text-gray-400" />
               <Input
                 label="Starting Point"
                 name="from"
                 register={register}
                 error={errors.from}
-                className="pl-10 pr-3 py-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your starting point"
               />
             </div>
 
-            <div className="relative flex items-center">
-              <MapPin className="h-5 w-5 text-gray-400 absolute left-3 top-3" />
+            <div className="relative flex items-center space-x-3">
+              <MapPin className="h-5 w-5 text-gray-400" />
               <Input
                 label="Destination"
                 name="to"
                 register={register}
                 error={errors.to}
-                className="pl-10 pr-3 py-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your destination"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="relative flex items-center">
-                <Calendar className="h-5 w-5 text-gray-400 absolute left-3 top-3" />
+              <div className="relative flex items-center space-x-3">
+                <Calendar className="h-5 w-5 text-gray-400" />
                 <Input
                   label="Date"
                   name="date"
                   type="date"
                   register={register}
                   error={errors.date}
-                  className="pl-10 pr-3 py-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
 
-              <div className="relative flex items-center">
-                <Calendar className="h-5 w-5 text-gray-400 absolute left-3 top-3" />
+              <div className="relative flex items-center space-x-3">
+                <Calendar className="h-5 w-5 text-gray-400" />
                 <Input
                   label="Time"
                   name="time"
                   type="time"
                   register={register}
                   error={errors.time}
-                  className="pl-10 pr-3 py-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="relative flex items-center">
-                <Users className="h-5 w-5 text-gray-400 absolute left-3 top-3" />
+              <div className="relative flex items-center space-x-3">
+                <Users className="h-5 w-5 text-gray-400" />
                 <Input
                   label="Available Seats"
                   name="seats"
                   type="number"
                   register={register}
                   error={errors.seats}
-                  className="pl-10 pr-3 py-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   min="1"
                   max="8"
                   placeholder="Number of seats"
                 />
               </div>
 
-              <div className="relative flex items-center">
-                <DollarSign className="h-5 w-5 text-gray-400 absolute left-3 top-3" />
+              <div className="relative flex items-center space-x-3">
+                <DollarSign className="h-5 w-5 text-gray-400" />
                 <Input
                   label="Price per Seat"
                   name="price"
                   type="number"
                   register={register}
                   error={errors.price}
-                  className="pl-10 pr-3 py-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   min="0"
                   step="0.01"
                   placeholder="Enter price per seat"
@@ -126,6 +128,31 @@ export const OfferRide: React.FC = () => {
             </Button>
           </div>
         </form>
+      </div>
+
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Published Rides</h2>
+        <div className="space-y-4">
+          {rides.map((ride, index) => (
+            <div
+              key={index}
+              className="bg-gray-100 p-4 rounded-lg shadow-sm border border-gray-200"
+            >
+              <p>
+                <strong>From:</strong> {ride.from} <br />
+                <strong>To:</strong> {ride.to}
+              </p>
+              <p>
+                <strong>Date:</strong> {ride.date} <br />
+                <strong>Time:</strong> {ride.time}
+              </p>
+              <p>
+                <strong>Seats:</strong> {ride.seats} <br />
+                <strong>Price per Seat:</strong> ₹{ride.price}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
