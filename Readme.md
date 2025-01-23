@@ -1,6 +1,6 @@
-# Ride Share - Driver-Passenger Connection Platform
+# EcoRide - Driver-Passenger Connection Platform
 
-Ride Share is a web platform designed to connect drivers traveling on specific routes with passengers heading in the same direction. The platform optimizes transportation by utilizing unused vehicle space, making travel more accessible and eco-friendly.
+EcoRide is a web platform designed to connect drivers traveling on specific routes with passengers heading in the same direction. The platform optimizes transportation by utilizing unused vehicle space, making travel more accessible and eco-friendly.
 
 ---
 
