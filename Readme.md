@@ -28,43 +28,114 @@ EcoRide is a web platform designed to connect drivers traveling on specific rout
 ## Tech Stack
 
 ### **Frontend**
-- React.js
-- Redux Toolkit / React Context API (State Management)
+- React (TypeScript)
+- Redux Toolkit (State Management)
 - Tailwind CSS (UI Styling)
 - Google Maps API (Route Visualization)
+- Vite (Bundler)
 
-### **Backend**
+### **Backend (Planned Features)**
 - Node.js with Express.js
-- MongoDB (Database)
 - JWT (Authentication)
-- Mongoose (ODM for MongoDB)
 
-### **Tools and Deployment**
-- Postman (API Testing)
-- Netlify / Vercel (Frontend Deployment)
-- Render / Heroku (Backend Deployment)
-- MongoDB Atlas (Cloud Database)
+### **Tools & Deployment**
+- ESLint & Prettier (Code Linting & Formatting)
+- PostCSS (CSS Processing)
+
 
 ---
 
-Ride Share/
-|-- frontend/                  # Frontend files
-|   |-- src/
-|       |-- components/        # Reusable React components
-|       |-- pages/             # Page-specific components
-|       |-- services/          # API interaction logic
-|       |-- context/           # Global state management
-|       |-- App.js             # Main React component
-|       |-- index.js           # React entry point
-|-- backend/                   # Backend files
-|   |-- models/                # MongoDB schemas
-|   |-- controllers/           # API business logic
-|   |-- routes/                # API endpoints
-|   |-- middleware/            # Authentication & validation
-|   |-- server.js              # Main server file
-|-- .gitignore
-|-- README.md
-|-- package.json
+## Project Structure
 
-Thanks you 
-best luck
+```
+└── lambaaryan011-ecoride/
+    ├── Readme.md
+    └── project/
+        ├── eslint.config.js
+        ├── index.html
+        ├── package-lock.json
+        ├── package.json
+        ├── postcss.config.js
+        ├── tailwind.config.js
+        ├── tsconfig.app.json
+        ├── tsconfig.json
+        ├── tsconfig.node.json
+        ├── vite.config.ts
+        ├── .gitignore
+        ├── src/
+        │   ├── App.tsx
+        │   ├── index.css
+        │   ├── main.tsx
+        │   ├── vite-env.d.ts
+        │   ├── components/
+        │   │   ├── forms/
+        │   │   │   ├── Input.tsx
+        │   │   │   └── SearchInput.tsx
+        │   │   ├── layout/
+        │   │   │   └── Header.tsx
+        │   │   ├── rides/
+        │   │   │   └── RideCard.tsx
+        │   │   └── ui/
+        │   │       └── Button.tsx
+        │   ├── lib/
+        │   │   └── axios.ts
+        │   ├── pages/
+        │   │   ├── Home.tsx
+        │   │   ├── auth/
+        │   │   │   ├── Login.tsx
+        │   │   │   └── Register.tsx
+        │   │   └── rides/
+        │   │       ├── FindRide.tsx
+        │   │       └── OfferRide.tsx
+        │   ├── stores/
+        │   │   └── authStore.ts
+        │   └── types/
+        │       └── index.ts
+```
+
+---
+
+## Installation & Setup
+
+### **Prerequisites**
+Ensure you have the following installed:
+- Node.js (>=16.x)
+- Package manager (npm or yarn)
+
+### **Steps to Run Locally**
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/lambaaryan011-ecoride.git
+   cd lambaaryan011-ecoride/project
+   ```
+
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+3. Start the development server:
+   ```sh
+   npm run dev
+   ```
+
+4. Open your browser and go to:
+   ```
+   http://localhost:5173
+   ```
+
+---
+
+## Contributing
+Contributions are welcome! Feel free to open an issue or submit a pull request.
+
+---
+
+## License
+This project is licensed under the MIT License.
+
+---
+
+Made with ❤️ for smarter and greener travel! 🚀
+
